@@ -7,7 +7,7 @@ import AtualizeUserService from '../services/AtualizeUserService';
 const userRouter = Router();
 const userRepository = new UserRepository;
 
-userRouter.post('/', (request, response) => {
+userRouter.post('/users', (request, response) => {
     try {
         const { name, birthDate, cpf, phone, 
             creationDate, atualizationDate } = request.body;
@@ -23,13 +23,13 @@ userRouter.post('/', (request, response) => {
     }
 });
 
-userRouter.get('/', (_request, response) => {
+userRouter.get('/users', (_request, response) => {
     const getUser = userRepository.allUsers();
 
     return response.json(getUser);
 });
 
-userRouter.put('/', (request, response) => {
+userRouter.put('/users', (request, response) => {
     try {
         const { id, name, birthDate, cpf, phone} = request.body;
 
@@ -44,7 +44,7 @@ userRouter.put('/', (request, response) => {
     }
 });
 
-userRouter.delete('/', (request, response) => {
+userRouter.delete('/users', (request, response) => {
     try {
         const { id } = request.body;
     

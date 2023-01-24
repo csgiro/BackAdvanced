@@ -7,7 +7,7 @@ import AtualizePiuService from '../services/AtualizePiuService';
 const piuRouter = Router();
 const piuRepository = new PiuRepository;
 
-piuRouter.post('/', (request, response) => {
+piuRouter.post('/pius', (request, response) => {
     try {
         const { id_user, text, creationDatePiu, atualizationDatePiu } = request.body;
 
@@ -21,13 +21,13 @@ piuRouter.post('/', (request, response) => {
     }
 });
 
-piuRouter.get('/', (_request, response) => {
+piuRouter.get('/pius', (_request, response) => {
     const getPiu = piuRepository.allPius();
 
     return response.json(getPiu);
 });
 
-piuRouter.put('/', (request, response) => {
+piuRouter.put('/pius', (request, response) => {
     try {
         const { idPiu, id_user, text} = request.body;
 
@@ -42,7 +42,7 @@ piuRouter.put('/', (request, response) => {
     }
 });
 
-piuRouter.delete('/', (request, response) => {
+piuRouter.delete('/pius', (request, response) => {
     try {
         const { idPiu } = request.body;
     
