@@ -1,5 +1,6 @@
 import Piu from "../models/Piu";
 import PiuRepository from "../repositories/PiuRepository";
+import UserRepository from "../repositories/UserRepository";
 
 interface RequestPiu {
   id_user: string;
@@ -10,18 +11,20 @@ interface RequestPiu {
 
 class CreatePiuService {
   private piuRepository: PiuRepository;
+  private userRepository: UserRepository;
 
-  constructor(piuRepository: PiuRepository) {
+  constructor(piuRepository: PiuRepository, userRepository: UserRepository) {
     this.piuRepository = piuRepository;
+    this.userRepository = userRepository;
   }
 
   public execute({
     id_user,
     text
-  }: RequestPiu): Piu {
-    const findId_user = this.piuRepository.findBy_id_user(id_user);
+  }: RequestPiu,): Piu {
+    const findId_user = this.userRepository.userById(id_user);
 
-    if (!findId_user) {
+    if (findId_user === null) {
       throw new Error("The user ID is invalid");
     }
 

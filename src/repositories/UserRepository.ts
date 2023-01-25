@@ -20,8 +20,8 @@ class UserRepository {
         return this.users;
     }
 
-    public userById(id: string): User | null {
-        const findUserById = this.users.find(user => user.id === id);
+    public async userById(id: string) : Promise<User | null>{
+        const findUserById = await this.users.find(user => user.id === id);
 
         return findUserById || null;
     }

@@ -18,12 +18,6 @@ class PiuRepository {
     return this.pius;
   }
 
-  public findBy_id_user(id_user: string): Piu | null {
-    const find_id_user = this.pius.find((piu) => piu.id_user === id_user);
-
-    return find_id_user || null;
-  }
-
   public piuById(idPiu: string): Piu | null {
     const findPiuById = this.pius.find(user => user.idPiu === idPiu);
 

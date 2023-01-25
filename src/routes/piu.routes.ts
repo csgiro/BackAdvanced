@@ -3,15 +3,17 @@ import PiuRepository from '../repositories/PiuRepository';
 import CreatePiuService from '../services/CreatePiuService';
 import DeletePiuService from '../services/DeletePiuService';
 import AtualizePiuService from '../services/AtualizePiuService';
+import UserRepository from '../repositories/UserRepository';
 
 const piuRouter = Router();
 const piuRepository = new PiuRepository;
+const userRepository = new UserRepository;
 
 piuRouter.post('/pius', (request, response) => {
     try {
         const { id_user, text, creationDatePiu, atualizationDatePiu } = request.body;
 
-    const createPiu = new CreatePiuService(piuRepository);
+    const createPiu = new CreatePiuService(piuRepository, userRepository);
 
     const piu = createPiu.execute({ id_user, text, creationDatePiu, atualizationDatePiu });
 
@@ -31,7 +33,7 @@ piuRouter.put('/pius', (request, response) => {
     try {
         const { idPiu, id_user, text} = request.body;
 
-    const atualizePiu =  new AtualizePiuService(piuRepository);
+    const atualizePiu =  new AtualizePiuService(piuRepository, userRepository);
 
     const atualizeOfPiu = atualizePiu.execute({ idPiu, id_user, text });
 

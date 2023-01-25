@@ -1,4 +1,4 @@
-import { uuid } from 'uuidv4';
+const {v4: uuidv4} = require('uuid');
 
 class User{
     id: string;
@@ -17,7 +17,7 @@ class User{
 
     constructor({ name, birthDate, cpf, phone, 
                 creationDate, atualizationDate } : Omit<User, 'id'>) {
-                    this.id = uuid();
+                    this.id = uuidv4();
                     this.name = name;
                     this.birthDate = birthDate;
                     this.cpf = cpf;
